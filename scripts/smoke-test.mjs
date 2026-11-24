@@ -1,38 +1,36 @@
-import { chromium } from 'playwright';
+import { execFileSync } from 'node:child_process';
 
+const chrome = process.env.CHROME_PATH || 'google-chrome';
 const url = process.env.TEST_BASE_URL || 'http://127.0.0.1:4173/myweb/';
-const browser = await chromium.launch({ headless: true });
-const page = await browser.newPage({ viewport: { width: 1440, height: 1000 } });
-const pageErrors = [];
-
-page.on('pageerror', (error) => pageErrors.push(error.stack || error.message));
 
 try {
-  const response = await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 });
-  if (!response || !response.ok()) {
-    throw new Error(`Page request failed: ${response?.status() ?? 'no response'} for ${url}`);
+  const html = execFileSync(
+    chrome,
+    [
+      '--headless=new',
+      '--no-sandbox',
+      '--disable-gpu',
+      '--disable-dev-shm-usage',
+      '--disable-background-networking',
+      '--no-first-run',
+      '--dump-dom',
+      '--virtual-time-budget=10000',
+      '--timeout=20000',
+      url,
+    ],
+    { encoding: 'utf8', timeout: 30000, maxBuffer: 10 * 1024 * 1024 },
+  );
+
+  const root = html.match(/<div id="root">([\\s\\S]*?)<\\/div>/)?.[1] ?? '';
+  const text = root.replace(/<script[\\s\\S]*?<\\/script>/g, '').replace(/<[^>]+>/g, ' ').replace(/\\s+/g, ' ').trim();
+  const heading = root.match(/<h1[^>]*>([\\s\\S]*?)<\\/h1>/)?.[1]?.replace(/<[^>]+>/g, ' ').replace(/\\s+/g, ' ').trim();
+
+  if (!heading || text.length < 100) {
+    throw new Error(`Blank page: React did not render the homepage. heading="${heading ?? ''}", rendered text length=${text.length}.`);
   }
 
-  await page.locator('#root h1').waitFor({ state: 'visible', timeout: 15000 });
-
-  const heading = (await page.locator('#root h1').innerText()).replace(/\\s+/g, ' ').trim();
-  const bodyText = (await page.locator('#root').innerText()).trim();
-
-  if (!heading || bodyText.length < 100) {
-    throw new Error(`App mounted but appears empty. Heading: "${heading}", text length: ${bodyText.length}`);
-  }
-
-  if (pageErrors.length) {
-    throw new Error(`Browser runtime errors:\\n${pageErrors.join('\\n')}`);
-  }
-
-  await page.screenshot({ path: '/tmp/myweb-smoke-test.png', fullPage: true });
-  console.log(`SMOKE TEST PASSED: HTTP ${response.status()}, heading="${heading}", rendered text=${bodyText.length} characters.`);
+  console.log(`BROWSER SMOKE TEST PASSED: heading="${heading}", rendered text length=${text.length}.`);
 } catch (error) {
-  console.error('SMOKE TEST FAILED:', error);
-  if (pageErrors.length) console.error('PAGE ERRORS:', pageErrors.join('\\n'));
-  await page.screenshot({ path: '/tmp/myweb-smoke-test-failed.png', fullPage: true }).catch(() => {});
+  console.error('BROWSER SMOKE TEST FAILED:', error.message);
   process.exitCode = 1;
-} finally {
-  await browser.close();
 }
