@@ -4,7 +4,14 @@ import type { LangCode } from '@/i18n';
 import { localeExtensions } from '@/appCopy';
 
 interface ConstructionModalProps { lang: LangCode; onClose: () => void; }
-const dialCodes = ['+961', '+1', '+44', '+33', '+49', '+971', '+966', '+90', '+91', '+86', '+351', '+55'];
+const dialCodes = [
+  '+961', '+1', '+44', '+33', '+49', '+971', '+966', '+974', '+965', '+973', '+968',
+  '+962', '+20', '+212', '+213', '+216', '+90', '+39', '+34', '+351', '+41', '+43',
+  '+31', '+32', '+46', '+47', '+45', '+358', '+48', '+30', '+7', '+91', '+92',
+  '+880', '+94', '+86', '+852', '+81', '+82', '+65', '+60', '+66', '+84', '+63',
+  '+62', '+61', '+64', '+55', '+52', '+54', '+56', '+57', '+27', '+234', '+254',
+  '+233', '+251', '+353', '+48', '+420', '+40', '+380'
+];
 
 export default function ConstructionModal({ lang, onClose }: ConstructionModalProps) {
   const copy = localeExtensions[lang].ui;
@@ -15,9 +22,28 @@ export default function ConstructionModal({ lang, onClose }: ConstructionModalPr
   const [phone, setPhone] = useState('');
 
   const projects = [
-    { title: copy.projectTower, image: `${import.meta.env.BASE_URL}images/mep/mep.jpeg`, alt: 'Commercial building MEP project and engineering documentation', icon: Layers3 },
-    { title: copy.projectCampus, image: 'https://media.stridetreglown.com/wp-content/uploads/2016/01/16183820/019-Morriston-School.jpg', alt: 'Photograph of a completed school campus courtyard', icon: HardHat },
-    { title: copy.projectMall, image: 'https://images.unsplash.com/photo-1772760224872-db7c8f49404a?auto=format&fit=crop&w=1200&q=80', alt: 'Photograph of a modern shopping mall atrium', icon: ShoppingBag },
+    {
+      title: copy.projectTower,
+      image: `${import.meta.env.BASE_URL}images/mep/mep.jpeg`,
+      alt: copy.projectTower,
+      icon: Layers3,
+    },
+    {
+      title: copy.projectCampus,
+      image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/SCHOOl_Building_morning_view.jpg/1024px-SCHOOl_Building_morning_view.jpg',
+      alt: copy.projectCampus,
+      icon: HardHat,
+      credit: 'Photo: GHG ACADEMY JGR · CC BY-SA 4.0',
+      creditUrl: 'https://commons.wikimedia.org/wiki/File:SCHOOl_Building_morning_view.jpg',
+    },
+    {
+      title: copy.projectMall,
+      image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Shopping_Mall_Atrium.jpeg/1280px-Shopping_Mall_Atrium.jpeg',
+      alt: copy.projectMall,
+      icon: ShoppingBag,
+      credit: 'Photo: Abbasidaniyal · CC0',
+      creditUrl: 'https://commons.wikimedia.org/wiki/File:Shopping_Mall_Atrium.jpeg',
+    },
   ];
   const services = [
     { title: copy.serviceDesign, icon: Ruler },
@@ -26,12 +52,40 @@ export default function ConstructionModal({ lang, onClose }: ConstructionModalPr
     { title: copy.serviceReview, icon: FileText },
   ];
 
-  const submitInquiry = (event: React.FormEvent<HTMLFormElement>) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
+
+  const submitInquiry = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const subject = encodeURIComponent(copy.emailSubject);
-    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nPhone: ${dialCode} ${phone}\n\nProject inquiry sent from dady Construction.`);
-    window.location.href = `mailto:malazjanbeih@gmail.com?subject=${subject}&body=${body}`;
-    setScreen('success');
+    setIsSubmitting(true);
+    setSubmitError('');
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/malazjanbeih@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          phone: `${dialCode} ${phone}`,
+          _replyto: email,
+          _subject: copy.emailSubject,
+          _template: 'table',
+          message: 'New project inquiry submitted through the dady Construction app.',
+        }),
+      });
+      const result = await response.json() as { success?: string | boolean; message?: string };
+      if (!response.ok || String(result.success) !== 'true') {
+        throw new Error(result.message || copy.contactError);
+      }
+      setScreen('success');
+    } catch {
+      setSubmitError(copy.contactError);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -59,7 +113,14 @@ export default function ConstructionModal({ lang, onClose }: ConstructionModalPr
                   {projects.map((project) => { const Icon = project.icon; return (
                     <article key={project.title} className="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
                       <div className="relative aspect-[16/10] overflow-hidden bg-slate-100"><img src={project.image} alt={project.alt} loading="lazy" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" /><span className="absolute left-3 top-3 flex h-9 w-9 items-center justify-center rounded-xl bg-white/90 text-slate-900 shadow-sm"><Icon className="h-4 w-4" /></span></div>
-                      <h2 className="px-4 py-3 text-sm font-bold text-slate-900">{project.title}</h2>
+                      <div className="px-4 py-3">
+                        <h2 className="text-sm font-bold text-slate-900">{project.title}</h2>
+                        {project.credit && (
+                          <a href={project.creditUrl} target="_blank" rel="noopener noreferrer" className="mt-1 inline-block text-[10px] leading-4 text-slate-500 underline decoration-slate-300 underline-offset-2">
+                            {project.credit}
+                          </a>
+                        )}
+                      </div>
                     </article>
                   ); })}
                 </div>
@@ -81,13 +142,16 @@ export default function ConstructionModal({ lang, onClose }: ConstructionModalPr
               <h1 className="mt-2 text-3xl font-extrabold tracking-tight text-slate-900">{copy.contactTitle}</h1>
               <p className="mt-3 text-sm leading-6 text-slate-500">{copy.contactSubtitle}</p>
               <form onSubmit={submitInquiry} className="mt-8 space-y-5">
-                <label className="block"><span className="mb-2 block text-sm font-semibold text-slate-700">{copy.nameLabel}</span><input required autoComplete="name" value={name} onChange={(event) => setName(event.target.value)} className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-100" /></label>
-                <label className="block"><span className="mb-2 block text-sm font-semibold text-slate-700">{copy.emailLabel}</span><input required type="email" autoComplete="email" value={email} onChange={(event) => setEmail(event.target.value)} className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-100" /></label>
+                <label className="block"><span className="mb-2 block text-sm font-semibold text-slate-700">{copy.nameLabel}</span><input required name="name" autoComplete="name" value={name} onChange={(event) => setName(event.target.value)} className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-100" /></label>
+                <label className="block"><span className="mb-2 block text-sm font-semibold text-slate-700">{copy.emailLabel}</span><input required name="email" type="email" autoComplete="email" value={email} onChange={(event) => setEmail(event.target.value)} className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-100" /></label>
                 <div><span className="mb-2 block text-sm font-semibold text-slate-700">{copy.phoneLabel}</span><div className="grid grid-cols-[minmax(110px,0.35fr)_1fr] gap-2">
-                  <label><span className="sr-only">{copy.countryCodeLabel}</span><select value={dialCode} onChange={(event) => setDialCode(event.target.value)} className="w-full rounded-xl border border-slate-300 bg-white px-3 py-3 text-sm outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-100">{dialCodes.map((code) => <option key={code} value={code}>{code}</option>)}</select></label>
-                  <input required type="tel" autoComplete="tel-national" value={phone} onChange={(event) => setPhone(event.target.value)} placeholder={copy.phonePlaceholder} className="w-full min-w-0 rounded-xl border border-slate-300 px-4 py-3 text-sm outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-100" />
+                  <label><span className="sr-only">{copy.countryCodeLabel}</span><select name="country_code" value={dialCode} onChange={(event) => setDialCode(event.target.value)} className="w-full rounded-xl border border-slate-300 bg-white px-3 py-3 text-sm outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-100">{dialCodes.map((code) => <option key={code} value={code}>{code}</option>)}</select></label>
+                  <input required name="phone" type="tel" autoComplete="tel-national" dir="ltr" value={phone} onChange={(event) => setPhone(event.target.value)} placeholder={copy.phonePlaceholder} className="w-full min-w-0 rounded-xl border border-slate-300 px-4 py-3 text-sm outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-100" />
                 </div><p className="mt-1.5 text-xs text-slate-400">{copy.countryCodeLabel}: {dialCode}</p></div>
-                <button type="submit" className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-slate-950 px-5 py-3.5 text-sm font-bold text-white transition hover:bg-slate-800"><Mail className="h-4 w-4" /> {copy.send}</button>
+                {submitError && <p role="alert" className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">{submitError}</p>}
+                <button type="submit" disabled={isSubmitting} className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-slate-950 px-5 py-3.5 text-sm font-bold text-white transition hover:bg-slate-800 disabled:cursor-wait disabled:opacity-60">
+                  <Mail className="h-4 w-4" /> {isSubmitting ? copy.contactSending : copy.send}
+                </button>
               </form>
             </div>
           )}
@@ -97,7 +161,6 @@ export default function ConstructionModal({ lang, onClose }: ConstructionModalPr
               <span className="flex h-16 w-16 items-center justify-center rounded-full bg-emerald-50 text-emerald-600"><CheckCircle2 className="h-8 w-8" /></span>
               <h1 className="mt-6 text-3xl font-extrabold text-slate-900">{copy.thankYou}</h1>
               <p className="mt-3 text-base leading-7 text-slate-600">{copy.thankYouBody}</p>
-              <p className="mt-3 text-sm leading-6 text-slate-400">{copy.emailNotice}</p>
               <button onClick={onClose} className="mt-7 rounded-full bg-slate-950 px-6 py-3 text-sm font-bold text-white hover:bg-slate-800">{copy.close}</button>
             </div>
           )}

@@ -11,6 +11,7 @@ import QuizDemo from './demos/QuizDemo';
 import FaceVideoDemo from './demos/FaceVideoDemo';
 import type { LangCode } from '@/i18n';
 import { uiStrings } from '@/i18n';
+import { localeExtensions } from '@/appCopy';
 import { localizedApp } from '@/appCopy';
 
 interface AppDetailModalProps {
@@ -30,7 +31,7 @@ const demoComponents: Record<DemoType, () => JSX.Element> = {
 };
 
 export default function AppDetailModal({ app, onClose, lang }: AppDetailModalProps) {
-  const t = uiStrings[lang];
+  const t = { ...uiStrings[lang], ...localeExtensions[lang].ui };
   const displayApp = localizedApp(app, lang);
   const Icon = (Icons as unknown as Record<string, Icons.LucideIcon>)[app.icon] ?? Icons.AppWindow;
   const cat = categories.find((c) => c.id === app.category);

@@ -402,6 +402,8 @@ export const apps: AppItem[] = [
     demo: 'quiz',
     popularity: 96,
     externalUrl: 'https://agenda.mycamp.workers.dev',
+    image: `${import.meta.env.BASE_URL}images/image.png`,
+    imageAlt: 'Agenda app screen showing its project and schedule workspace',
   },
   {
     id: 'learnloop',

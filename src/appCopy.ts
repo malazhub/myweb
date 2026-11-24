@@ -26,7 +26,7 @@ export const localeExtensions: Record<LangCode, LocaleExtension> = {
       send:'Send', back:'Back', close:'Close', thankYou:'Thank you for your interest!',
       thankYouBody:'Thank you for reaching out. Once we receive your message, our team will contact you soon.',
       emailNotice:'Your email app should open with your details filled in. Please send the prepared email to complete your inquiry.',
-      emailSubject:'Construction project inquiry'
+      emailSubject:'Construction project inquiry', contactSending:'Sending…', contactError:'We could not send your request. Please check your connection and try again.'
     },
     apps: {
       construction:{name:'Construction',tagline:'Building systems & MEP services',description:'A construction services hub for MEP design, shop drawings, quantity takeoffs, coordination, and technical document reviews for commercial, school, and retail projects.',features:['MEP design','Shop drawings','Bill of quantities','Technical reviews']},
@@ -46,7 +46,7 @@ export const localeExtensions: Record<LangCode, LocaleExtension> = {
       send:'Enviar', back:'Volver', close:'Cerrar', thankYou:'¡Gracias por tu interés!',
       thankYouBody:'Gracias por contactarnos. Cuando recibamos tu mensaje, nuestro equipo se pondrá en contacto contigo pronto.',
       emailNotice:'Tu aplicación de correo debería abrirse con tus datos preparados. Envía el correo para completar la solicitud.',
-      emailSubject:'Consulta sobre un proyecto de construcción'
+      emailSubject:'Consulta sobre un proyecto de construcción', contactSending:'Enviando…', contactError:'No pudimos enviar tu solicitud. Comprueba tu conexión e inténtalo de nuevo.'
     },
     apps: {
       construction:{name:'Construcción',tagline:'Sistemas de edificios y servicios MEP',description:'Servicios de construcción para diseño MEP, planos de taller, mediciones, coordinación y revisión técnica de proyectos comerciales, escolares y minoristas.',features:['Diseño MEP','Planos de taller','Mediciones','Revisiones técnicas']},
@@ -66,7 +66,7 @@ export const localeExtensions: Record<LangCode, LocaleExtension> = {
       send:'Envoyer', back:'Retour', close:'Fermer', thankYou:'Merci pour votre intérêt !',
       thankYouBody:'Merci de nous avoir contactés. Dès réception de votre message, notre équipe vous répondra rapidement.',
       emailNotice:'Votre application de messagerie devrait s’ouvrir avec vos coordonnées. Envoyez le message préparé pour finaliser votre demande.',
-      emailSubject:'Demande de projet de construction'
+      emailSubject:'Demande de projet de construction', contactSending:'Envoi en cours…', contactError:'Nous n’avons pas pu envoyer votre demande. Vérifiez votre connexion et réessayez.'
     },
     apps: {
       construction:{name:'Construction',tagline:'Systèmes du bâtiment et services MEP',description:'Services de construction dédiés à la conception MEP, aux plans d’exécution, aux métrés, à la coordination et à la revue technique de projets commerciaux, scolaires et de vente au détail.',features:['Conception MEP','Plans d’exécution','Métrés','Revues techniques']},
@@ -86,7 +86,7 @@ export const localeExtensions: Record<LangCode, LocaleExtension> = {
       send:'Senden', back:'Zurück', close:'Schließen', thankYou:'Vielen Dank für Ihr Interesse!',
       thankYouBody:'Vielen Dank für Ihre Nachricht. Sobald wir sie erhalten haben, wird sich unser Team zeitnah bei Ihnen melden.',
       emailNotice:'Ihre E-Mail-Anwendung sollte sich mit Ihren Angaben öffnen. Bitte senden Sie die vorbereitete E-Mail, um Ihre Anfrage abzuschließen.',
-      emailSubject:'Anfrage zu einem Bauprojekt'
+      emailSubject:'Anfrage zu einem Bauprojekt', contactSending:'Wird gesendet…', contactError:'Ihre Anfrage konnte nicht gesendet werden. Bitte prüfen Sie Ihre Verbindung und versuchen Sie es erneut.'
     },
     apps: {
       construction:{name:'Bauwesen',tagline:'Gebäudetechnik und MEP-Leistungen',description:'MEP-Planung, Werkstattzeichnungen, Mengenermittlung, Koordination und technische Dokumentenprüfungen für Gewerbe-, Schul- und Einzelhandelsprojekte.',features:['MEP-Planung','Werkstattzeichnungen','Mengenermittlung','Technische Prüfungen']},
@@ -106,7 +106,7 @@ export const localeExtensions: Record<LangCode, LocaleExtension> = {
       send:'Enviar', back:'Voltar', close:'Fechar', thankYou:'Obrigado pelo seu interesse!',
       thankYouBody:'Obrigado pelo contacto. Assim que recebermos a sua mensagem, a nossa equipa entrará em contacto em breve.',
       emailNotice:'A sua aplicação de e-mail deverá abrir com os seus dados preenchidos. Envie a mensagem preparada para concluir o pedido.',
-      emailSubject:'Pedido sobre projeto de construção'
+      emailSubject:'Pedido sobre projeto de construção', contactSending:'A enviar…', contactError:'Não foi possível enviar o seu pedido. Verifique a ligação e tente novamente.'
     },
     apps: {
       construction:{name:'Construção',tagline:'Sistemas prediais e serviços MEP',description:'Serviços de construção para projeto MEP, desenhos de execução, mapas de quantidades, coordenação e revisão técnica de projetos comerciais, escolares e de retalho.',features:['Projeto MEP','Desenhos de execução','Mapas de quantidades','Revisões técnicas']},
@@ -126,7 +126,7 @@ export const localeExtensions: Record<LangCode, LocaleExtension> = {
       send:'إرسال', back:'رجوع', close:'إغلاق', thankYou:'شكراً لاهتمامك!',
       thankYouBody:'شكراً لتواصلك معنا. بعد استلام رسالتك، سيتواصل معك فريقنا قريباً.',
       emailNotice:'من المفترض أن يفتح تطبيق البريد الإلكتروني مع بياناتك جاهزة. أرسل الرسالة المعدّة لإكمال طلبك.',
-      emailSubject:'استفسار عن مشروع إنشائي'
+      emailSubject:'استفسار عن مشروع إنشائي', contactSending:'جارٍ الإرسال…', contactError:'تعذّر إرسال طلبك. يرجى التحقق من الاتصال والمحاولة مرة أخرى.'
     },
     apps: {
       construction:{name:'الإنشاءات',tagline:'أنظمة المباني وخدمات MEP',description:'خدمات إنشائية تشمل تصميم أنظمة MEP ومخططات التنفيذ وجداول الكميات والتنسيق والمراجعة الفنية للمشاريع التجارية والمدارس ومراكز التسوق.',features:['تصميم MEP','مخططات التنفيذ','جداول الكميات','المراجعات الفنية']},
@@ -146,7 +146,7 @@ export const localeExtensions: Record<LangCode, LocaleExtension> = {
       send:'भेजें', back:'वापस', close:'बंद करें', thankYou:'आपकी रुचि के लिए धन्यवाद!',
       thankYouBody:'संपर्क करने के लिए धन्यवाद। आपका संदेश मिलने के बाद हमारी टीम जल्द आपसे संपर्क करेगी।',
       emailNotice:'आपका ईमेल ऐप भरी हुई जानकारी के साथ खुलना चाहिए। अनुरोध पूरा करने के लिए तैयार ईमेल भेजें।',
-      emailSubject:'निर्माण परियोजना संबंधी पूछताछ'
+      emailSubject:'निर्माण परियोजना संबंधी पूछताछ', contactSending:'भेजा जा रहा है…', contactError:'आपका अनुरोध भेजा नहीं जा सका। कृपया अपना इंटरनेट कनेक्शन जाँचें और फिर कोशिश करें।'
     },
     apps: {
       construction:{name:'निर्माण',tagline:'बिल्डिंग सिस्टम और MEP सेवाएँ',description:'व्यावसायिक, स्कूल और रिटेल परियोजनाओं के लिए MEP डिज़ाइन, शॉप ड्रॉइंग, मात्रा सूची, समन्वय और तकनीकी दस्तावेज़ समीक्षा की निर्माण सेवाएँ।',features:['MEP डिज़ाइन','शॉप ड्रॉइंग','मात्रा सूची','तकनीकी समीक्षा']},
@@ -166,7 +166,7 @@ export const localeExtensions: Record<LangCode, LocaleExtension> = {
       send:'发送', back:'返回', close:'关闭', thankYou:'感谢你的关注！',
       thankYouBody:'感谢你与我们联系。收到你的信息后，我们的团队会尽快与你联系。',
       emailNotice:'你的邮件应用应会打开并填入相关信息。请发送已准备好的邮件以完成咨询。',
-      emailSubject:'建筑项目咨询'
+      emailSubject:'建筑项目咨询', contactSending:'正在发送…', contactError:'无法发送你的请求。请检查网络连接后重试。'
     },
     apps: {
       construction:{name:'建筑施工',tagline:'建筑系统与 MEP 服务',description:'面向商业、学校和零售项目的施工服务，提供 MEP 设计、施工图、工程量清单、协调和技术文件审查。',features:['MEP 设计','施工图','工程量清单','技术审查']},
@@ -186,7 +186,7 @@ export const localeExtensions: Record<LangCode, LocaleExtension> = {
       send:'Gönder', back:'Geri', close:'Kapat', thankYou:'İlginiz için teşekkür ederiz!',
       thankYouBody:'Bizimle iletişime geçtiğiniz için teşekkürler. Mesajınızı aldıktan sonra ekibimiz en kısa sürede sizinle iletişime geçecektir.',
       emailNotice:'E-posta uygulamanız bilgileri doldurulmuş şekilde açılmalıdır. Talebinizi tamamlamak için hazırlanan e-postayı gönderin.',
-      emailSubject:'İnşaat projesi hakkında talep'
+      emailSubject:'İnşaat projesi hakkında talep', contactSending:'Gönderiliyor…', contactError:'Talebiniz gönderilemedi. Lütfen bağlantınızı kontrol edip tekrar deneyin.'
     },
     apps: {
       construction:{name:'İnşaat',tagline:'Bina sistemleri ve MEP hizmetleri',description:'Ticari, okul ve perakende projeleri için MEP tasarımı, uygulama çizimleri, metraj, koordinasyon ve teknik belge incelemesi sunan inşaat hizmetleri.',features:['MEP tasarımı','Uygulama çizimleri','Metraj','Teknik incelemeler']},

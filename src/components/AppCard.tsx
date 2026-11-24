@@ -3,6 +3,7 @@ import type { AppItem } from '@/types';
 import { categories } from '@/types';
 import type { LangCode } from '@/i18n';
 import { uiStrings } from '@/i18n';
+import { localeExtensions } from '@/appCopy';
 import { localizedApp } from '@/appCopy';
 
 interface AppCardProps {
@@ -13,7 +14,7 @@ interface AppCardProps {
 }
 
 export default function AppCard({ app, onTry, index, lang }: AppCardProps) {
-  const t = uiStrings[lang];
+  const t = { ...uiStrings[lang], ...localeExtensions[lang].ui };
   const displayApp = localizedApp(app, lang);
   const Icon = (Icons as unknown as Record<string, Icons.LucideIcon>)[app.icon] ?? Icons.AppWindow;
   const cat = categories.find((c) => c.id === app.category);
