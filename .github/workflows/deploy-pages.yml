@@ -34,6 +34,25 @@ jobs:
       - name: Build website
         run: npm run build
 
+      - name: Set up Chrome
+        id: chrome
+        uses: browser-actions/setup-chrome@v1
+
+      - name: Start production preview
+        run: |
+          npm run preview -- --host 127.0.0.1 --port 4173 &
+          for attempt in {1..30}; do
+            if curl --silent --fail http://127.0.0.1:4173/myweb/ > /dev/null; then
+              break
+            fi
+            sleep 1
+          done
+
+      - name: Verify homepage renders in a real browser
+        env:
+          CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
+        run: node scripts/smoke-test.mjs
+
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
