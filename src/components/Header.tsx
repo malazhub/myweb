@@ -13,7 +13,7 @@ interface HeaderProps {
 
 export default function Header({ query, onQueryChange, onLogoClick, lang, onLangChange }: HeaderProps) {
   const t = uiStrings[lang];
-  const navLabels = [t.navBrowse, t.navCategories, t.navAbout];
+  const navItems = [{ label: t.navBrowse, href: '#browse' }, { label: t.navCategories, href: '#categories' }, { label: t.navAbout, href: '#about' }];
 
   return (
     <header className="sticky top-0 z-30 border-b border-slate-200/60 bg-white/80 glass">
@@ -53,13 +53,13 @@ export default function Header({ query, onQueryChange, onLogoClick, lang, onLang
         <LanguageSwitcher current={lang} onChange={onLangChange} />
 
         <nav className="hidden shrink-0 items-center gap-1 md:flex">
-          {navLabels.map((label) => (
+          {navItems.map((item) => (
             <a
-              key={label}
-              href={`#${label.toLowerCase()}`}
+              key={item.href}
+              href={item.href}
               className="rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900"
             >
-              {label}
+              {item.label}
             </a>
           ))}
         </nav>

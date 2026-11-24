@@ -1,4 +1,7 @@
+import agendaScreenshotBase64 from './assets/agenda-screenshot.b64?raw';
+
 export type CategoryId =
+  | 'construction'
   | 'management'
   | 'health'
   | 'money'
@@ -42,6 +45,13 @@ export interface AppItem {
 }
 
 export const categories: Category[] = [
+  {
+    id: 'construction',
+    label: 'Construction',
+    icon: 'HardHat',
+    color: 'warn',
+    description: 'MEP design, building systems, coordination, and technical project support.',
+  },
   {
     id: 'management',
     label: 'Management',
@@ -94,6 +104,20 @@ export const categories: Category[] = [
 ];
 
 export const apps: AppItem[] = [
+  {
+    id: 'construction',
+    name: 'Construction',
+    category: 'construction',
+    tagline: 'Building systems & MEP services',
+    description: 'A construction services hub for MEP design, shop drawings, quantity takeoffs, coordination, and technical document reviews for commercial, school, and retail projects.',
+    icon: 'HardHat',
+    gradient: 'from-slate-800 to-amber-700',
+    features: ['MEP design', 'Shop drawings', 'Bill of quantities', 'Technical reviews'],
+    demo: 'kanban',
+    popularity: 100,
+    image: `${import.meta.env.BASE_URL}images/mep/mep.jpeg`,
+    imageAlt: 'Construction engineering and MEP project documentation',
+  },
   {
     id: 'erpconstruction',
     name: 'ERP Construction',
@@ -153,7 +177,7 @@ export const apps: AppItem[] = [
     features: ['Wellness check-ins', 'Mindful routines', 'Nature-inspired design', 'Gentle daily guidance'],
     demo: 'habit',
     popularity: 97,
-    externalUrl: 'https://malazhub.github.io/sana/',
+    externalUrl: 'https://sanabase.github.io/sana/',
     image: 'https://images.pexels.com/photos/29150568/pexels-photo-29150568.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
     imageAlt: 'Golden hour sunset over a calm tropical beach',
   },
@@ -380,6 +404,8 @@ export const apps: AppItem[] = [
     demo: 'quiz',
     popularity: 96,
     externalUrl: 'https://agenda.mycamp.workers.dev',
+    image: `data:image/jpeg;base64,${agendaScreenshotBase64.trim()}`,
+    imageAlt: 'Agenda screenshot supplied for the platform listing',
   },
   {
     id: 'learnloop',

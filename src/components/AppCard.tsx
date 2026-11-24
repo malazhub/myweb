@@ -3,6 +3,7 @@ import type { AppItem } from '@/types';
 import { categories } from '@/types';
 import type { LangCode } from '@/i18n';
 import { uiStrings } from '@/i18n';
+import { localizedApp } from '@/appCopy';
 
 interface AppCardProps {
   app: AppItem;
@@ -13,6 +14,7 @@ interface AppCardProps {
 
 export default function AppCard({ app, onTry, index, lang }: AppCardProps) {
   const t = uiStrings[lang];
+  const displayApp = localizedApp(app, lang);
   const Icon = (Icons as unknown as Record<string, Icons.LucideIcon>)[app.icon] ?? Icons.AppWindow;
   const cat = categories.find((c) => c.id === app.category);
   const isExternal = Boolean(app.externalUrl);
@@ -50,19 +52,19 @@ export default function AppCard({ app, onTry, index, lang }: AppCardProps) {
           {catLabel}
         </span>
         <div className="absolute inset-x-0 bottom-0 p-4">
-          <h3 className="text-lg font-bold leading-tight text-white drop-shadow-sm">{app.name}</h3>
-          <p className="mt-0.5 text-xs font-medium text-white/80">{app.tagline}</p>
+          <h3 className="text-lg font-bold leading-tight text-white drop-shadow-sm">{displayApp.name}</h3>
+          <p className="mt-0.5 text-xs font-medium text-white/80">{displayApp.tagline}</p>
         </div>
       </div>
 
       <div className="flex flex-1 flex-col p-4">
         <p className="line-clamp-3 text-sm leading-relaxed text-slate-600">
-          {app.description}
+          {displayApp.description}
         </p>
 
         <div className="mt-auto flex items-center justify-between pt-4">
           <div className="flex flex-wrap items-center gap-1">
-            {app.features.slice(0, 2).map((f) => (
+            {displayApp.features.slice(0, 2).map((f) => (
               <span
                 key={f}
                 className="rounded-md bg-slate-100 px-2 py-0.5 text-[10px] font-medium text-slate-500"

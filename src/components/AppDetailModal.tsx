@@ -11,6 +11,7 @@ import QuizDemo from './demos/QuizDemo';
 import FaceVideoDemo from './demos/FaceVideoDemo';
 import type { LangCode } from '@/i18n';
 import { uiStrings } from '@/i18n';
+import { localizedApp } from '@/appCopy';
 
 interface AppDetailModalProps {
   app: AppItem;
@@ -30,6 +31,7 @@ const demoComponents: Record<DemoType, () => JSX.Element> = {
 
 export default function AppDetailModal({ app, onClose, lang }: AppDetailModalProps) {
   const t = uiStrings[lang];
+  const displayApp = localizedApp(app, lang);
   const Icon = (Icons as unknown as Record<string, Icons.LucideIcon>)[app.icon] ?? Icons.AppWindow;
   const cat = categories.find((c) => c.id === app.category);
   const DemoComponent = demoComponents[app.demo];
@@ -79,8 +81,8 @@ export default function AppDetailModal({ app, onClose, lang }: AppDetailModalPro
                   {t.liveDemo}
                 </span>
               </div>
-              <h2 className="text-xl font-extrabold text-white sm:text-2xl">{app.name}</h2>
-              <p className="text-sm text-white/80">{app.tagline}</p>
+              <h2 className="text-xl font-extrabold text-white sm:text-2xl">{displayApp.name}</h2>
+              <p className="text-sm text-white/80">{displayApp.tagline}</p>
             </div>
           </div>
         </div>
@@ -88,12 +90,12 @@ export default function AppDetailModal({ app, onClose, lang }: AppDetailModalPro
         <div className="no-scrollbar flex-1 overflow-y-auto p-5 sm:p-6">
           <div className="mb-4 grid gap-3 sm:grid-cols-3">
             <div className="rounded-xl bg-slate-50 p-3 sm:col-span-2">
-              <p className="text-xs leading-relaxed text-slate-600">{app.description}</p>
+              <p className="text-xs leading-relaxed text-slate-600">{displayApp.description}</p>
             </div>
             <div className="rounded-xl border border-slate-200 p-3">
               <p className="mb-2 text-[10px] font-bold uppercase tracking-wide text-slate-400">{t.features}</p>
               <ul className="space-y-1.5">
-                {app.features.map((f) => (
+                {displayApp.features.map((f) => (
                   <li key={f} className="flex items-center gap-1.5 text-xs text-slate-600">
                     <Icons.Check className="h-3 w-3 shrink-0 text-accent-500" />
                     {f}
@@ -116,7 +118,7 @@ export default function AppDetailModal({ app, onClose, lang }: AppDetailModalPro
                     allow="autoplay; encrypted-media; picture-in-picture"
                     allowFullScreen
                     className="absolute inset-0 h-full w-full"
-                    title={`${app.name} overview video`}
+                    title={`${displayApp.name} overview video`}
                   />
                 </div>
               </div>
@@ -144,7 +146,7 @@ export default function AppDetailModal({ app, onClose, lang }: AppDetailModalPro
               rel="noopener noreferrer"
               className="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-brand-600 to-brand-500 px-4 py-3 text-sm font-semibold text-white shadow-md transition-all hover:brightness-105 active:scale-95"
             >
-              {t.open} {app.name}
+              {t.open} {displayApp.name}
               <Icons.ExternalLink className="h-4 w-4" />
             </a>
           )}

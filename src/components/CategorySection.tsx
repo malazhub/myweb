@@ -3,6 +3,7 @@ import type { Category } from '@/types';
 import { apps } from '@/types';
 import type { LangCode } from '@/i18n';
 import { uiStrings } from '@/i18n';
+import { localeExtensions, localizedApp } from '@/appCopy';
 
 interface CategorySectionProps {
   category: Category;
@@ -11,9 +12,9 @@ interface CategorySectionProps {
 }
 
 export default function CategorySection({ category, onTry, lang }: CategorySectionProps) {
-  const t = uiStrings[lang];
+  const t = { ...uiStrings[lang], ...localeExtensions[lang].ui };
   const Icon = (Icons as unknown as Record<string, Icons.LucideIcon>)[category.icon] ?? Icons.Circle;
-  const categoryApps = apps.filter((a) => a.category === category.id);
+  const categoryApps = apps.filter((a) => a.category === category.id).map((a) => localizedApp(a, lang));
   const labelKey = `cat${category.id.charAt(0).toUpperCase()}${category.id.slice(1)}`;
   const descKey = `cat${category.id.charAt(0).toUpperCase()}${category.id.slice(1)}Desc`;
   const label = t[labelKey] ?? category.label;

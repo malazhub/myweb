@@ -2,6 +2,7 @@ import * as Icons from 'lucide-react';
 import type { Category, CategoryId } from '@/types';
 import type { LangCode } from '@/i18n';
 import { uiStrings } from '@/i18n';
+import { localeExtensions } from '@/appCopy';
 
 interface CategoryPillsProps {
   categories: Category[];
@@ -11,7 +12,7 @@ interface CategoryPillsProps {
 }
 
 export default function CategoryPills({ categories, active, onSelect, lang }: CategoryPillsProps) {
-  const t = uiStrings[lang];
+  const t = { ...uiStrings[lang], ...localeExtensions[lang].ui };
   const allPill = {
     id: 'all' as const,
     label: t.all,
