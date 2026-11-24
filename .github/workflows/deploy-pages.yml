@@ -71,3 +71,14 @@ jobs:
       - name: Publish the compiled Vite website last
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Check out the browser smoke test
+        uses: actions/checkout@v4
+
+      - name: Allow Pages to serve the new deployment
+        run: sleep 20
+
+      - name: Verify the live website in Chrome
+        env:
+          TEST_BASE_URL: https://malazhub.github.io/myweb/
+        run: node scripts/smoke-test.mjs
