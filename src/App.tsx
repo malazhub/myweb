@@ -59,12 +59,6 @@ export default function App() {
     }
     setSelectedApp(app);
   };
-  const handleTryAppById = (id: string) => {
-    const app = apps.find((a) => a.id === id);
-    if (app) handleTryApp(app);
-  };
-
-
   return (
     <div className="min-h-screen bg-white">
       <Header
