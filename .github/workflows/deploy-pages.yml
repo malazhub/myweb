@@ -34,6 +34,9 @@ jobs:
       - name: Build website
         run: npm run build
 
+      - name: Verify requested website features
+        run: node scripts/requirements-check.mjs
+
       - name: Check preinstalled Chrome
         run: google-chrome --version
 
