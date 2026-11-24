@@ -34,9 +34,8 @@ jobs:
       - name: Build website
         run: npm run build
 
-      - name: Set up Chrome
-        id: chrome
-        uses: browser-actions/setup-chrome@v1
+      - name: Check preinstalled Chrome
+        run: google-chrome --version
 
       - name: Start production preview
         run: |
@@ -49,8 +48,6 @@ jobs:
           done
 
       - name: Verify homepage renders in a real browser
-        env:
-          CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
         run: node scripts/smoke-test.mjs
 
       - name: Set GitHub Pages source to GitHub Actions
