@@ -4,7 +4,6 @@ import { apps, categories } from '@/types';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import CategoryPills from '@/components/CategoryPills';
-import CategorySection from '@/components/CategorySection';
 import AppCard from '@/components/AppCard';
 import AppDetailModal from '@/components/AppDetailModal';
 import Footer from '@/components/Footer';
@@ -65,7 +64,6 @@ export default function App() {
     if (app) handleTryApp(app);
   };
 
-  const showCategoryView = activeCategory === 'all' && !query.trim();
 
   return (
     <div className="min-h-screen bg-white">
@@ -114,12 +112,6 @@ export default function App() {
               >
                 {t.clearFilters}
               </button>
-            </div>
-          ) : showCategoryView ? (
-            <div className="space-y-2">
-              {categories.map((cat) => (
-                <CategorySection key={cat.id} category={cat} onTry={handleTryAppById} lang={lang} />
-              ))}
             </div>
           ) : (
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
