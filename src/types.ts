@@ -177,7 +177,7 @@ export const apps: AppItem[] = [
     popularity: 97,
     externalUrl: 'https://sanabase.github.io/sana/',
     image: `${import.meta.env.BASE_URL}images/sana-portrait.webp`,
-    imageAlt: 'Golden hour sunset over a calm tropical beach',
+    imageAlt: 'A friendly smiling woman around 45 years old, in a bright welcoming setting',
   },
   {
     id: 'habitly',
@@ -403,7 +403,7 @@ export const apps: AppItem[] = [
     popularity: 96,
     externalUrl: 'https://agenda.mycamp.workers.dev',
     image: `${import.meta.env.BASE_URL}images/agenda-poster.webp`,
-    imageAlt: 'Agenda app screen showing its project and schedule workspace',
+    imageAlt: 'School business and educator recruitment poster in English, French, and Arabic' and schedule workspace',
   },
   {
     id: 'learnloop',
