@@ -1,5 +1,3 @@
-import agendaScreenshotBase64 from './assets/agenda-screenshot.b64?raw';
-
 export type CategoryId =
   | 'construction'
   | 'management'
@@ -404,8 +402,6 @@ export const apps: AppItem[] = [
     demo: 'quiz',
     popularity: 96,
     externalUrl: 'https://agenda.mycamp.workers.dev',
-    image: `data:image/jpeg;base64,${agendaScreenshotBase64.trim()}`,
-    imageAlt: 'Agenda screenshot supplied for the platform listing',
   },
   {
     id: 'learnloop',
