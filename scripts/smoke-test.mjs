@@ -21,9 +21,9 @@ try {
     { encoding: 'utf8', timeout: 30000, maxBuffer: 10 * 1024 * 1024 },
   );
 
-  const root = html.match(/<div id="root">([\s\S]*?)<\/div>/)?.[1] ?? '';
-  const text = root.replace(/<script[\s\S]*?<\/script>/g, '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
-  const heading = root.match(/<h1[^>]*>([\s\S]*?)<\/h1>/)?.[1]?.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+  const body = html.match(/<body[^>]*>([\s\S]*?)<\/body>/i)?.[1] ?? '';
+  const heading = body.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i)?.[1]?.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+  const text = body.replace(/<script[\s\S]*?<\/script>/gi, '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
 
   if (!heading || text.length < 100) {
     throw new Error('Blank page: React did not render the homepage. heading="' + (heading || '') + '", rendered text length=' + text.length + '.');
