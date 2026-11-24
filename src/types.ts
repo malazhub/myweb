@@ -403,7 +403,7 @@ export const apps: AppItem[] = [
     popularity: 96,
     externalUrl: 'https://agenda.mycamp.workers.dev',
     image: `${import.meta.env.BASE_URL}images/agenda-poster.webp`,
-    imageAlt: 'School business and educator recruitment poster in English, French, and Arabic' and schedule workspace',
+    imageAlt: 'The supplied school-business and educator-recruitment poster in English, French, and Arabic',
   },
   {
     id: 'learnloop',
