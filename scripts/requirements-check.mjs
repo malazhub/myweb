@@ -5,6 +5,9 @@ const types = read('src/types.ts');
 const app = read('src/App.tsx');
 const modal = read('src/components/ConstructionModal.tsx');
 const copy = read('src/appCopy.ts');
+const i18n = read('src/i18n.ts');
+const header = read('src/components/Header.tsx');
+const html = read('index.html');
 
 const checks = [
   ['Construction category appears before Management', types.indexOf("id: 'construction'") < types.indexOf("id: 'management'")],
@@ -13,10 +16,13 @@ const checks = [
   ['Construction inquiry has name, email, country code and phone fields', ['nameLabel', 'emailLabel', 'countryCodeLabel', 'phoneLabel'].every((key) => modal.includes(key))],
   ['Inquiry submit shows thank-you only after successful service response', modal.includes('https://formsubmit.co/ajax/malazjanbeih@gmail.com') && modal.includes("setScreen('success')") && modal.includes('!response.ok')],
   ['Sana points to the requested URL', types.includes("https://sanabase.github.io/sana/")],
-  ['Agenda card uses the committed screenshot file', types.includes('images/image.png') && existsSync('public/images/image.png')],
+  ['Sana uses the new local portrait asset', types.includes('images/sana-portrait.jpg') && existsSync('public/images/sana-portrait.jpg')],
+  ['Agenda card uses the supplied poster image', types.includes('images/agenda-poster.jpg') && existsSync('public/images/agenda-poster.jpg')],
+  ['Agenda poster displays at its full 3:4 proportions', read('src/components/AppCard.tsx').includes("app.id === 'agenda' ? 'aspect-[3/4]' : 'aspect-[9/16]'")],
   ['School campus photo is a real Wikimedia photograph with attribution', modal.includes('SCHOOl_Building_morning_view.jpg') && modal.includes('CC BY-SA 4.0') && modal.includes('commons.wikimedia.org/wiki/File:SCHOOl_Building_morning_view.jpg')],
   ['Mall photo is a real Wikimedia photograph with attribution', modal.includes('Shopping_Mall_Atrium.jpeg') && modal.includes('CC0') && modal.includes('commons.wikimedia.org/wiki/File:Shopping_Mall_Atrium.jpeg')],
   ['About and app descriptions are localized across all nine languages', (copy.match(/aboutBody:/g) || []).length === 9 && (copy.match(/sana:\s*\{/g) || []).length === 9 && (copy.match(/construction:\s*\{/g) || []).length === 9],
+  ['The visible platform brand is my platform everywhere', ![copy,i18n,header,html,modal].join('\n').toLowerCase().includes('dady') && i18n.split("siteName: 'my platform'").length - 1 === 9 && i18n.split("footerRights: 'my platform.'").length - 1 === 9],
   ['Category cards navigate to the selected category', app.includes('setActiveCategory(cat.id)') && app.includes('scrollToBrowse()')],
 ];
 

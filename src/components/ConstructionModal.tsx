@@ -73,7 +73,7 @@ export default function ConstructionModal({ lang, onClose }: ConstructionModalPr
           _replyto: email,
           _subject: copy.emailSubject,
           _template: 'table',
-          message: 'New project inquiry submitted through the dady Construction app.',
+          message: 'New project inquiry submitted through the my platform Construction app.',
         }),
       });
       const result = await response.json() as { success?: string | boolean; message?: string };

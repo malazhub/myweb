@@ -35,7 +35,7 @@ export default function AppCard({ app, onTry, index, lang }: AppCardProps) {
       style={{ animationDelay: `${Math.min(index * 60, 400)}ms` }}
       className="group flex animate-slide-up flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white text-left shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl"
     >
-      <div className={`relative aspect-[9/16] w-full overflow-hidden ${app.image ? '' : `bg-gradient-to-br ${app.gradient}`}`}>
+      <div className={`relative ${app.id === 'agenda' ? 'aspect-[3/4]' : 'aspect-[9/16]'} w-full overflow-hidden ${app.image ? '' : `bg-gradient-to-br ${app.gradient}`}`}>
         {app.image && (
           <img
             src={app.image}

@@ -176,7 +176,7 @@ export const apps: AppItem[] = [
     demo: 'habit',
     popularity: 97,
     externalUrl: 'https://sanabase.github.io/sana/',
-    image: 'https://images.pexels.com/photos/29150568/pexels-photo-29150568.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    image: '${import.meta.env.BASE_URL}images/sana-portrait.jpg',
     imageAlt: 'Golden hour sunset over a calm tropical beach',
   },
   {
@@ -402,7 +402,7 @@ export const apps: AppItem[] = [
     demo: 'quiz',
     popularity: 96,
     externalUrl: 'https://agenda.mycamp.workers.dev',
-    image: `${import.meta.env.BASE_URL}images/image.png`,
+    image: `${import.meta.env.BASE_URL}images/agenda-poster.jpg`,
     imageAlt: 'Agenda app screen showing its project and schedule workspace',
   },
   {

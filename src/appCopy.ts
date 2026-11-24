@@ -16,7 +16,7 @@ export const localeExtensions: Record<LangCode, LocaleExtension> = {
   en: {
     ui: {
       catConstruction:'Construction', catConstructionDesc:'MEP design, building systems, coordination, and technical project support.',
-      aboutTitle:'About dady', aboutBody:'dady brings useful digital tools together in one easy-to-explore platform. Discover applications for construction, management, health, money, hiring, productivity, gaming, and learning. Each category helps you find a tool for a practical task, with clear descriptions and direct access to the app.',
+      aboutTitle:'About my platform', aboutBody:'my platform brings useful digital tools together in one easy-to-explore platform. Discover applications for construction, management, health, money, hiring, productivity, gaming, and learning. Each category helps you find a tool for a practical task, with clear descriptions and direct access to the app.',
       constructionEyebrow:'Construction • MEP services', constructionHeading:'Building systems, coordinated from the first drawing to the final review.',
       constructionBody:'Explore our construction services for commercial, educational, and retail projects. We support mechanical, electrical, and plumbing design, coordinated shop drawings, bills of quantities, and technical document reviews.',
       projectTower:'Commercial tower', projectCampus:'School campus', projectMall:'Shopping mall', projectDocs:'Technical documentation',
@@ -36,7 +36,7 @@ export const localeExtensions: Record<LangCode, LocaleExtension> = {
   es: {
     ui: {
       catConstruction:'Construcción', catConstructionDesc:'Diseño MEP, sistemas del edificio, coordinación y apoyo técnico para proyectos.',
-      aboutTitle:'Acerca de dady', aboutBody:'dady reúne herramientas digitales útiles en una plataforma fácil de explorar. Descubre aplicaciones de construcción, gestión, salud, finanzas, contratación, productividad, juegos y aprendizaje. Cada categoría te ayuda a encontrar una herramienta práctica, con descripciones claras y acceso directo.',
+      aboutTitle:'Acerca de my platform', aboutBody:'my platform reúne herramientas digitales útiles en una plataforma fácil de explorar. Descubre aplicaciones de construcción, gestión, salud, finanzas, contratación, productividad, juegos y aprendizaje. Cada categoría te ayuda a encontrar una herramienta práctica, con descripciones claras y acceso directo.',
       constructionEyebrow:'Construcción • Servicios MEP', constructionHeading:'Sistemas del edificio coordinados desde el primer plano hasta la revisión final.',
       constructionBody:'Descubre nuestros servicios para proyectos comerciales, educativos y minoristas. Ofrecemos diseño mecánico, eléctrico y de fontanería, planos de taller coordinados, mediciones y revisión técnica de documentos.',
       projectTower:'Torre comercial', projectCampus:'Campus escolar', projectMall:'Centro comercial', projectDocs:'Documentación técnica',
@@ -56,7 +56,7 @@ export const localeExtensions: Record<LangCode, LocaleExtension> = {
   fr: {
     ui: {
       catConstruction:'Construction', catConstructionDesc:'Conception MEP, systèmes du bâtiment, coordination et accompagnement technique.',
-      aboutTitle:'À propos de dady', aboutBody:'dady rassemble des outils numériques utiles sur une plateforme facile à explorer. Découvrez des applications pour la construction, la gestion, la santé, les finances, le recrutement, la productivité, les jeux et l’apprentissage. Chaque catégorie vous aide à trouver un outil pratique, avec des descriptions claires et un accès direct.',
+      aboutTitle:'À propos de my platform', aboutBody:'my platform rassemble des outils numériques utiles sur une plateforme facile à explorer. Découvrez des applications pour la construction, la gestion, la santé, les finances, le recrutement, la productivité, les jeux et l’apprentissage. Chaque catégorie vous aide à trouver un outil pratique, avec des descriptions claires et un accès direct.',
       constructionEyebrow:'Construction • Services MEP', constructionHeading:'Des systèmes coordonnés du premier plan jusqu’à la revue finale.',
       constructionBody:'Découvrez nos services pour les projets commerciaux, scolaires et de vente au détail. Nous accompagnons la conception mécanique, électrique et plomberie, les plans d’exécution, les métrés et la revue technique des documents.',
       projectTower:'Tour commerciale', projectCampus:'Campus scolaire', projectMall:'Centre commercial', projectDocs:'Documentation technique',
@@ -76,7 +76,7 @@ export const localeExtensions: Record<LangCode, LocaleExtension> = {
   de: {
     ui: {
       catConstruction:'Bauwesen', catConstructionDesc:'MEP-Planung, Gebäudetechnik, Koordination und technische Projektunterstützung.',
-      aboutTitle:'Über dady', aboutBody:'dady vereint nützliche digitale Werkzeuge auf einer leicht erkundbaren Plattform. Entdecken Sie Anwendungen für Bauwesen, Management, Gesundheit, Finanzen, Recruiting, Produktivität, Gaming und Lernen. Jede Kategorie hilft Ihnen, ein passendes Werkzeug für praktische Aufgaben zu finden – mit klaren Beschreibungen und direktem App-Zugang.',
+      aboutTitle:'Über my platform', aboutBody:'my platform vereint nützliche digitale Werkzeuge auf einer leicht erkundbaren Plattform. Entdecken Sie Anwendungen für Bauwesen, Management, Gesundheit, Finanzen, Recruiting, Produktivität, Gaming und Lernen. Jede Kategorie hilft Ihnen, ein passendes Werkzeug für praktische Aufgaben zu finden – mit klaren Beschreibungen und direktem App-Zugang.',
       constructionEyebrow:'Bauwesen • MEP-Leistungen', constructionHeading:'Gebäudetechnik – koordiniert vom ersten Plan bis zur abschließenden Prüfung.',
       constructionBody:'Entdecken Sie unsere Leistungen für Gewerbe-, Schul- und Einzelhandelsprojekte. Wir unterstützen die Planung von Heizung, Lüftung, Elektro und Sanitär, koordinierte Werkstattzeichnungen, Mengenermittlungen und technische Dokumentenprüfungen.',
       projectTower:'Gewerbehochhaus', projectCampus:'Schulcampus', projectMall:'Einkaufszentrum', projectDocs:'Technische Dokumentation',
@@ -96,7 +96,7 @@ export const localeExtensions: Record<LangCode, LocaleExtension> = {
   pt: {
     ui: {
       catConstruction:'Construção', catConstructionDesc:'Projeto MEP, sistemas prediais, coordenação e apoio técnico a projetos.',
-      aboutTitle:'Sobre a dady', aboutBody:'A dady reúne ferramentas digitais úteis numa plataforma fácil de explorar. Descubra aplicações de construção, gestão, saúde, finanças, recrutamento, produtividade, jogos e aprendizagem. Cada categoria ajuda a encontrar uma ferramenta prática, com descrições claras e acesso direto.',
+      aboutTitle:'Sobre a my platform', aboutBody:'A my platform reúne ferramentas digitais úteis numa plataforma fácil de explorar. Descubra aplicações de construção, gestão, saúde, finanças, recrutamento, produtividade, jogos e aprendizagem. Cada categoria ajuda a encontrar uma ferramenta prática, com descrições claras e acesso direto.',
       constructionEyebrow:'Construção • Serviços MEP', constructionHeading:'Sistemas prediais coordenados do primeiro desenho à revisão final.',
       constructionBody:'Conheça os nossos serviços para projetos comerciais, escolares e de retalho. Apoiamos projetos mecânicos, elétricos e hidráulicos, desenhos de execução coordenados, mapas de quantidades e revisões técnicas de documentos.',
       projectTower:'Torre comercial', projectCampus:'Campus escolar', projectMall:'Centro comercial', projectDocs:'Documentação técnica',
@@ -116,7 +116,7 @@ export const localeExtensions: Record<LangCode, LocaleExtension> = {
   ar: {
     ui: {
       catConstruction:'الإنشاءات', catConstructionDesc:'تصميم أنظمة المباني وأعمال MEP والتنسيق والدعم الفني للمشاريع.',
-      aboutTitle:'عن dady', aboutBody:'تجمع dady أدوات رقمية مفيدة في منصة واحدة سهلة التصفح. اكتشف تطبيقات الإنشاءات والإدارة والصحة والمال والتوظيف والإنتاجية والألعاب والتعلّم. يساعدك كل تصنيف في العثور على أداة عملية، مع وصف واضح وإمكانية الوصول المباشر إلى التطبيق.',
+      aboutTitle:'عن my platform', aboutBody:'تجمع my platform أدوات رقمية مفيدة في منصة واحدة سهلة التصفح. اكتشف تطبيقات الإنشاءات والإدارة والصحة والمال والتوظيف والإنتاجية والألعاب والتعلّم. يساعدك كل تصنيف في العثور على أداة عملية، مع وصف واضح وإمكانية الوصول المباشر إلى التطبيق.',
       constructionEyebrow:'الإنشاءات • خدمات MEP', constructionHeading:'أنظمة مبانٍ منسّقة من أول مخطط إلى المراجعة النهائية.',
       constructionBody:'تعرّف إلى خدماتنا للمشاريع التجارية والمدارس ومراكز التسوق. نقدّم دعم تصميم الأنظمة الميكانيكية والكهربائية والصحية، ومخططات التنفيذ المنسّقة، وجداول الكميات، ومراجعة المستندات الفنية.',
       projectTower:'برج تجاري', projectCampus:'حرم مدرسي', projectMall:'مركز تسوق', projectDocs:'المستندات الفنية',
@@ -136,7 +136,7 @@ export const localeExtensions: Record<LangCode, LocaleExtension> = {
   hi: {
     ui: {
       catConstruction:'निर्माण', catConstructionDesc:'MEP डिज़ाइन, बिल्डिंग सिस्टम, समन्वय और परियोजना तकनीकी सहायता।',
-      aboutTitle:'dady के बारे में', aboutBody:'dady उपयोगी डिजिटल टूल्स को एक ऐसे प्लेटफ़ॉर्म पर लाता है जिसे आसानी से खोजा जा सकता है। निर्माण, प्रबंधन, स्वास्थ्य, वित्त, भर्ती, उत्पादकता, गेमिंग और सीखने के ऐप्स खोजें। हर श्रेणी स्पष्ट विवरण और ऐप तक सीधे पहुँच के साथ सही टूल ढूँढने में मदद करती है।',
+      aboutTitle:'my platform के बारे में', aboutBody:'my platform उपयोगी डिजिटल टूल्स को एक ऐसे प्लेटफ़ॉर्म पर लाता है जिसे आसानी से खोजा जा सकता है। निर्माण, प्रबंधन, स्वास्थ्य, वित्त, भर्ती, उत्पादकता, गेमिंग और सीखने के ऐप्स खोजें। हर श्रेणी स्पष्ट विवरण और ऐप तक सीधे पहुँच के साथ सही टूल ढूँढने में मदद करती है।',
       constructionEyebrow:'निर्माण • MEP सेवाएँ', constructionHeading:'पहली ड्रॉइंग से अंतिम समीक्षा तक समन्वित बिल्डिंग सिस्टम।',
       constructionBody:'व्यावसायिक, स्कूल और रिटेल परियोजनाओं के लिए हमारी सेवाएँ देखें। हम मैकेनिकल, इलेक्ट्रिकल और प्लंबिंग डिज़ाइन, समन्वित शॉप ड्रॉइंग, मात्रा सूची और तकनीकी दस्तावेज़ समीक्षा में सहायता करते हैं।',
       projectTower:'व्यावसायिक टावर', projectCampus:'स्कूल परिसर', projectMall:'शॉपिंग मॉल', projectDocs:'तकनीकी दस्तावेज़',
@@ -156,7 +156,7 @@ export const localeExtensions: Record<LangCode, LocaleExtension> = {
   zh: {
     ui: {
       catConstruction:'建筑施工', catConstructionDesc:'MEP 设计、建筑系统、协调及项目技术支持。',
-      aboutTitle:'关于 dady', aboutBody:'dady 将实用的数字工具汇集在一个便于浏览的平台中。发现建筑施工、管理、健康、财务、招聘、效率、游戏和学习类应用。每个分类都通过清晰介绍和直接访问，帮助你找到解决实际任务的工具。',
+      aboutTitle:'关于 my platform', aboutBody:'my platform 将实用的数字工具汇集在一个便于浏览的平台中。发现建筑施工、管理、健康、财务、招聘、效率、游戏和学习类应用。每个分类都通过清晰介绍和直接访问，帮助你找到解决实际任务的工具。',
       constructionEyebrow:'建筑施工 • MEP 服务', constructionHeading:'从第一张图纸到最终审查，协调建筑系统。',
       constructionBody:'了解我们面向商业、校园和零售项目的服务。我们提供机械、电气和给排水设计、综合施工图、工程量清单以及技术文件审查支持。',
       projectTower:'商业塔楼', projectCampus:'学校校园', projectMall:'购物中心', projectDocs:'技术文档',
@@ -176,7 +176,7 @@ export const localeExtensions: Record<LangCode, LocaleExtension> = {
   tr: {
     ui: {
       catConstruction:'İnşaat', catConstructionDesc:'MEP tasarımı, bina sistemleri, koordinasyon ve teknik proje desteği.',
-      aboutTitle:'dady hakkında', aboutBody:'dady, kullanışlı dijital araçları kolayca keşfedilebilen tek bir platformda bir araya getirir. İnşaat, yönetim, sağlık, finans, işe alım, verimlilik, oyun ve öğrenme uygulamalarını keşfedin. Her kategori, açık açıklamalar ve doğrudan erişimle pratik bir görev için doğru aracı bulmanıza yardımcı olur.',
+      aboutTitle:'my platform hakkında', aboutBody:'my platform, kullanışlı dijital araçları kolayca keşfedilebilen tek bir platformda bir araya getirir. İnşaat, yönetim, sağlık, finans, işe alım, verimlilik, oyun ve öğrenme uygulamalarını keşfedin. Her kategori, açık açıklamalar ve doğrudan erişimle pratik bir görev için doğru aracı bulmanıza yardımcı olur.',
       constructionEyebrow:'İnşaat • MEP hizmetleri', constructionHeading:'İlk çizimden son incelemeye kadar koordineli bina sistemleri.',
       constructionBody:'Ticari, okul ve perakende projelerine yönelik hizmetlerimizi keşfedin. Mekanik, elektrik ve sıhhi tesisat tasarımı, koordine uygulama çizimleri, metraj cetvelleri ve teknik belge incelemelerinde destek sağlıyoruz.',
       projectTower:'Ticari kule', projectCampus:'Okul kampüsü', projectMall:'Alışveriş merkezi', projectDocs:'Teknik dokümantasyon',
