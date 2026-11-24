@@ -14,7 +14,7 @@ const projects = [
     label: '01 / Commercial tower',
     title: 'High-rise MEP coordination',
     detail: 'Integrated services planning for a landmark office building.',
-    image: '/images/mep/mep.jpeg',
+    image: `${import.meta.env.BASE_URL}images/mep/mep.jpeg`,
     className: 'md:col-span-2 md:row-span-2',
     icon: Layers3,
   },
