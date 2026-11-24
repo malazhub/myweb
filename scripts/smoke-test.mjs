@@ -26,10 +26,10 @@ try {
   const heading = root.match(/<h1[^>]*>([\s\S]*?)<\/h1>/)?.[1]?.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
 
   if (!heading || text.length < 100) {
-    throw new Error(\`Blank page: React did not render the homepage. heading="\${heading ?? ''}", rendered text length=\${text.length}.\`);
+    throw new Error('Blank page: React did not render the homepage. heading="' + (heading || '') + '", rendered text length=' + text.length + '.');
   }
 
-  console.log(\`BROWSER SMOKE TEST PASSED: heading="\${heading}", rendered text length=\${text.length}.\`);
+  console.log('BROWSER SMOKE TEST PASSED: heading="' + heading + '", rendered text length=' + text.length + '.');
 } catch (error) {
   console.error('BROWSER SMOKE TEST FAILED:', error.message);
   process.exitCode = 1;
