@@ -278,20 +278,6 @@ export const apps: AppItem[] = [
     imageAlt: 'Artistic double-exposure portrait with a film camera',
   },
   {
-    id: 'facebook-post-analyzer',
-    name: 'Facebook Post Analyzer',
-    category: 'productivity',
-    tagline: 'Find relevant posts with keyword matching',
-    description:
-      'Analyze accessible Facebook posts for supplied keywords. Compare post text using lightweight similarity scoring and display screenshots of matching posts.',
-    icon: 'Search',
-    gradient: 'from-blue-600 to-slate-900',
-    features: ['Keyword-based post matching', 'Text similarity scoring', 'Post text extraction', 'Matching post screenshots'],
-    demo: 'notes',
-    popularity: 95,
-    externalUrl: 'https://faceapp-2-7jyi.onrender.com',
-  },
-  {
     id: 'quicknote',
     name: 'QuickNote',
     category: 'productivity',
