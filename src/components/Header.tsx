@@ -23,7 +23,7 @@ export default function Header({ query, onQueryChange, onLogoClick, lang, onLang
           className="flex shrink-0 items-center gap-2 transition-transform hover:scale-[1.02]"
         >
           <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 shadow-md shadow-brand-500/30">
-            <span className="text-lg font-extrabold text-white">M</span>
+            <span className="text-lg font-extrabold text-white">S</span>
           </div>
           <span className="hidden text-lg font-extrabold tracking-tight text-slate-900 sm:block">
             {t.siteName}

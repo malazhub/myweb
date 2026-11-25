@@ -15,7 +15,7 @@ export default function Footer({ lang }: FooterProps) {
         <div className="flex flex-col items-center gap-6 text-center sm:flex-row sm:justify-between sm:text-left">
           <div className="flex items-center gap-2">
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-brand-500 to-brand-700">
-              <span className="text-sm font-extrabold text-white">d</span>
+              <span className="text-sm font-extrabold text-white">S</span>
             </div>
             <span className="text-base font-extrabold tracking-tight text-slate-900">{t.siteName}</span>
           </div>

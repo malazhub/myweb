@@ -15,7 +15,7 @@ const dialCodes = [
 
 export default function ConstructionModal({ lang, onClose }: ConstructionModalProps) {
   const copy = localeExtensions[lang].ui;
-  const [screen, setScreen] = useState<'overview' | 'contact' | 'success'>('overview');
+  const [screen, setScreen] = useState<'overview' | 'contact' | 'success'>(() => new URLSearchParams(window.location.search).get('construction-inquiry') === 'sent' ? 'success' : 'overview');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [dialCode, setDialCode] = useState('+961');
@@ -53,47 +53,7 @@ export default function ConstructionModal({ lang, onClose }: ConstructionModalPr
     { title: copy.serviceReview, icon: FileText },
   ];
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitError, setSubmitError] = useState('');
-
-  const submitInquiry = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setIsSubmitting(true);
-    setSubmitError('');
-    try {
-      const response = await fetch('https://formsubmit.co/ajax/malazjanbeih@gmail.com', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: JSON.stringify({
-          name,
-          email,
-          phone: `${dialCode} ${phone}`,
-          _replyto: email,
-          _subject: copy.emailSubject,
-          _template: 'table',
-          message: message.trim(),
-        }),
-      });
-      const responseText = await response.text();
-      let result: { success?: string | boolean; message?: string };
-      try {
-        result = JSON.parse(responseText) as { success?: string | boolean; message?: string };
-      } catch {
-        throw new Error(copy.contactError);
-      }
-      if (!response.ok || ![true, 'true'].includes(result.success ?? false)) {
-        throw new Error(result.message || copy.contactError);
-      }
-      setScreen('success');
-    } catch {
-      setSubmitError(copy.contactError);
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+  // Native POST avoids browser CORS/AJAX failures and lets FormSubmit handle delivery.
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/70 p-0 backdrop-blur-sm sm:p-4" role="dialog" aria-modal="true" aria-label={copy.constructionHeading} onClick={onClose}>
@@ -148,20 +108,19 @@ export default function ConstructionModal({ lang, onClose }: ConstructionModalPr
               <p className="text-xs font-bold uppercase tracking-[0.18em] text-amber-700">{copy.discussProject}</p>
               <h1 className="mt-2 text-3xl font-extrabold tracking-tight text-slate-900">{copy.contactTitle}</h1>
               <p className="mt-3 text-sm leading-6 text-slate-500">{copy.contactSubtitle}</p>
-              <form onSubmit={submitInquiry} className="mt-8 space-y-5">
+              <form action="https://formsubmit.co/malazjanbeih@gmail.com" method="POST" className="mt-8 space-y-5">
+                <input type="hidden" name="_next" value="https://malazhub.github.io/myweb/?construction-inquiry=sent" />
+                <input type="hidden" name="_subject" value={copy.emailSubject} />
+                <input type="hidden" name="_template" value="table" />
+                <input type="hidden" name="_replyto" value={email} />
                 <label className="block"><span className="mb-2 block text-sm font-semibold text-slate-700">{copy.nameLabel}</span><input required name="name" autoComplete="name" value={name} onChange={(event) => setName(event.target.value)} className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-100" /></label>
                 <label className="block"><span className="mb-2 block text-sm font-semibold text-slate-700">{copy.emailLabel}</span><input required name="email" type="email" autoComplete="email" value={email} onChange={(event) => setEmail(event.target.value)} className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-100" /></label>
                 <div><span className="mb-2 block text-sm font-semibold text-slate-700">{copy.phoneLabel}</span><div className="grid grid-cols-[minmax(110px,0.35fr)_1fr] gap-2">
                   <label><span className="sr-only">{copy.countryCodeLabel}</span><select name="country_code" value={dialCode} onChange={(event) => setDialCode(event.target.value)} className="w-full rounded-xl border border-slate-300 bg-white px-3 py-3 text-sm outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-100">{dialCodes.map((code) => <option key={code} value={code}>{code}</option>)}</select></label>
                   <input required name="phone" type="tel" autoComplete="tel-national" dir="ltr" value={phone} onChange={(event) => setPhone(event.target.value)} placeholder={copy.phonePlaceholder} className="w-full min-w-0 rounded-xl border border-slate-300 px-4 py-3 text-sm outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-100" />
                 </div><p className="mt-1.5 text-xs text-slate-400">{copy.countryCodeLabel}: {dialCode}</p></div>
-                {submitError && <p role="alert" className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">{submitError}</p>}
-                <button type="submit" disabled={isSubmitting} className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-slate-950 px-5 py-3.5 text-sm font-bold text-white transition hover:bg-slate-800 disabled:cursor-wait disabled:opacity-60">
-                  <Mail className="h-4 w-4" /> {isSubmitting ? copy.contactSending : copy.send}
-                </button>
                 <label className="block"><span className="mb-2 block text-sm font-semibold text-slate-700">{copy.messageLabel}</span><textarea required name="message" rows={5} maxLength={5000} value={message} onChange={(event) => setMessage(event.target.value)} placeholder={copy.messagePlaceholder} className="w-full resize-y rounded-xl border border-slate-300 px-4 py-3 text-sm outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-100" /></label>
-                {submitError && <div role="alert" className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"><p>{submitError}</p><a className="mt-2 inline-flex font-bold underline underline-offset-2" href={`mailto:malazjanbeih@gmail.com?subject=${encodeURIComponent(copy.emailSubject)}&body=${encodeURIComponent(`${copy.nameLabel}: ${name}\n${copy.emailLabel}: ${email}\n${copy.phoneLabel}: ${dialCode} ${phone}\n\n${copy.messageLabel}:\n${message}`)}`}>{copy.emailFallback}</a></div>}
-              </form>
+
             </div>
           )}
 

@@ -15,7 +15,7 @@ const checks = [
   ['Construction is a first-class app in the shared apps grid', /id: 'construction',[\s\S]*?category: 'construction'/.test(types) && app.includes('<AppCard')],
   ['Construction opens its own screen from the app card', app.includes("app.id === 'construction'") && app.includes('<ConstructionModal')],
   ['Construction inquiry has name, email, country code, phone and required message fields', ['nameLabel', 'emailLabel', 'countryCodeLabel', 'phoneLabel', 'messageLabel'].every((key) => modal.includes(key)) && /required name="message"/.test(modal)],
-  ['Inquiry sends the customer message to the requested email and only then shows thank-you', modal.includes('https://formsubmit.co/ajax/malazjanbeih@gmail.com') && modal.includes('message: message.trim()') && modal.includes("setScreen('success')") && modal.includes("'true'].includes(result.success") && modal.includes('mailto:malazjanbeih@gmail.com')],
+  ['Inquiry sends the customer message to the requested email and only then shows thank-you', modal.includes('action="https://formsubmit.co/malazjanbeih@gmail.com"') && modal.includes('method="POST"') && modal.includes('name="_next"') && modal.includes('construction-inquiry=sent') && !modal.includes('fetch(') && app.includes('construction-inquiry') && app.includes('closeConstruction')],
   ['Success message contains the requested assurance in all nine languages', (copy.match(/thankYouBody:/g) || []).length === 9 && copy.includes('We will get back to you as soon as possible. Thank you for your attention.')],
   ['Sana points to the requested URL', types.includes("https://sanabase.github.io/sana/")],
   ['Sana uses the new local portrait asset', types.includes('images/sana-portrait.webp') && existsSync('public/images/sana-portrait.webp')],
@@ -24,7 +24,7 @@ const checks = [
   ['School campus photo is a real Wikimedia photograph with attribution', modal.includes('Building_of_school.jpg') && modal.includes('CC BY-SA 4.0') && modal.includes('commons.wikimedia.org/wiki/File:Building_of_school.jpg') && modal.includes('https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Building_of_school.jpg/960px-Building_of_school.jpg')],
   ['Mall photo is a real Wikimedia photograph with attribution', modal.includes('Shopping_Mall_Atrium.jpeg') && modal.includes('CC0') && modal.includes('commons.wikimedia.org/wiki/File:Shopping_Mall_Atrium.jpeg')],
   ['About and app descriptions are localized across all nine languages', (copy.match(/aboutBody:/g) || []).length === 9 && (copy.match(/sana:\s*\{/g) || []).length === 9 && (copy.match(/construction:\s*\{/g) || []).length === 9],
-  ['The visible platform brand is my platform everywhere', ![copy,i18n,header,html,modal].join('\n').toLowerCase().includes('dady') && i18n.split("siteName: 'my platform'").length - 1 === 9 && i18n.split("footerRights: 'my platform.'").length - 1 === 9],
+  ['The visible platform brand is SpaceHub in all locales, header, footer and browser title', i18n.split("siteName: 'SpaceHub'").length - 1 === 9 && i18n.split("footerRights: 'SpaceHub.'").length - 1 === 9 && header.includes('>S</span>') && footer.includes('>S</span>') && html.includes('<title>SpaceHub — Useful Digital Apps</title>')],
   ['Category cards navigate to the selected category', app.includes('setActiveCategory(cat.id)') && app.includes('scrollToBrowse()')],
 ];
 

@@ -17,7 +17,7 @@ export default function App() {
   const [query, setQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState<CategoryId | 'all'>('all');
   const [selectedApp, setSelectedApp] = useState<AppItem | null>(null);
-  const [showConstruction, setShowConstruction] = useState(false);
+  const [showConstruction, setShowConstruction] = useState(() => new URLSearchParams(window.location.search).get('construction-inquiry') === 'sent');
   const [lang, setLang] = useState<LangCode>('en');
   const browseRef = useRef<HTMLDivElement>(null);
   const t = { ...uiStrings[lang], ...localeExtensions[lang].ui };
@@ -43,6 +43,13 @@ export default function App() {
     }
     return [...result].sort((a, b) => b.popularity - a.popularity);
   }, [query, activeCategory, lang]);
+
+  const closeConstruction = () => {
+    const url = new URL(window.location.href);
+    url.searchParams.delete('construction-inquiry');
+    window.history.replaceState({}, '', url.toString());
+    setShowConstruction(false);
+  };
 
   const scrollToBrowse = () => {
     browseRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -147,7 +154,7 @@ export default function App() {
       {selectedApp && (
         <AppDetailModal app={selectedApp} onClose={() => setSelectedApp(null)} lang={lang} />
       )}
-      {showConstruction && <ConstructionModal lang={lang} onClose={() => setShowConstruction(false)} />}
+      {showConstruction && <ConstructionModal lang={lang} onClose={closeConstruction} />}
     </div>
   );
 }
