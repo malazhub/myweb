@@ -8,6 +8,7 @@ const modal = read('src/components/ConstructionModal.tsx');
 const copy = read('src/appCopy.ts');
 const i18n = read('src/i18n.ts');
 const header = read('src/components/Header.tsx');
+const footer = read('src/components/Footer.tsx');
 const html = read('index.html');
 
 const checks = [
