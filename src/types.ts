@@ -175,7 +175,7 @@ export const apps: AppItem[] = [
     features: ['Wellness check-ins', 'Mindful routines', 'Nature-inspired design', 'Gentle daily guidance'],
     demo: 'habit',
     popularity: 97,
-    externalUrl: 'https://sanabase.github.io/sana/',
+    externalUrl: 'https://spacehub.github.io/sana/',
     image: `${import.meta.env.BASE_URL}images/sana-portrait.webp`,
     imageAlt: 'A friendly smiling woman around 45 years old, in a bright welcoming setting',
   },
