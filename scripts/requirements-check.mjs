@@ -13,7 +13,7 @@ const checks = [
   ['Construction category appears before Management', types.indexOf("id: 'construction'") < types.indexOf("id: 'management'")],
   ['Construction is a first-class app in the shared apps grid', /id: 'construction',[\s\S]*?category: 'construction'/.test(types) && app.includes('<AppCard')],
   ['Construction opens its own screen from the app card', app.includes("app.id === 'construction'") && app.includes('<ConstructionModal')],
-  ['Construction inquiry has name, email, country code, phone and required message fields', ['nameLabel', 'emailLabel', 'countryCodeLabel', 'phoneLabel', 'messageLabel'].every((key) => modal.includes(key)) && /name="message" required/.test(modal)],
+  ['Construction inquiry has name, email, country code, phone and required message fields', ['nameLabel', 'emailLabel', 'countryCodeLabel', 'phoneLabel', 'messageLabel'].every((key) => modal.includes(key)) && /required name="message"/.test(modal)],
   ['Inquiry sends the customer message to the requested email and only then shows thank-you', modal.includes('https://formsubmit.co/ajax/malazjanbeih@gmail.com') && modal.includes('message: message.trim()') && modal.includes("setScreen('success')") && modal.includes("'true'].includes(result.success") && modal.includes('mailto:malazjanbeih@gmail.com')],
   ['Success message contains the requested assurance in all nine languages', (copy.match(/thankYouBody:/g) || []).length === 9 && copy.includes('We will get back to you as soon as possible. Thank you for your attention.')],
   ['Sana points to the requested URL', types.includes("https://sanabase.github.io/sana/")],
