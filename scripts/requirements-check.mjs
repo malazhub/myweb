@@ -18,7 +18,7 @@ const checks = [
   ['Construction inquiry has name, email, country code, phone and required message fields', ['nameLabel', 'emailLabel', 'countryCodeLabel', 'phoneLabel', 'messageLabel'].every((key) => modal.includes(key)) && /required name="message"/.test(modal)],
   ['Inquiry sends the customer message to the requested email and only then shows thank-you', modal.includes('action="https://formsubmit.co/malazjanbeih@gmail.com"') && modal.includes('method="POST"') && modal.includes('name="_next"') && modal.includes('construction-inquiry=sent') && !modal.includes('fetch(') && app.includes('construction-inquiry') && app.includes('closeConstruction')],
   ['Success message contains the requested assurance in all nine languages', (copy.match(/thankYouBody:/g) || []).length === 9 && copy.includes('We will get back to you as soon as possible. Thank you for your attention.')],
-  ['Sana points to the requested URL', types.includes("https://sanabase.github.io/sana/")],
+  ['Sana points to the requested URL', types.includes("https://spacehub.github.io/sana/")],
   ['Sana uses the new local portrait asset', types.includes('images/sana-portrait.webp') && existsSync('public/images/sana-portrait.webp')],
   ['Agenda card uses the exact user-supplied poster image', types.includes('images/agenda-poster.webp') && existsSync('public/images/agenda-poster.webp') && createHash('sha256').update(readFileSync('public/images/agenda-poster.webp')).digest('hex') === 'c3583bc6f751dbfb243b0b5290a5ae751853f0f1ef47ef751405b0316e560c63'],
   ['Agenda poster displays at its full 3:4 proportions', read('src/components/AppCard.tsx').includes("app.id === 'agenda' ? 'aspect-[3/4]' : 'aspect-[9/16]'")],
