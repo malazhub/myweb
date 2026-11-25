@@ -20,6 +20,7 @@ export default function ConstructionModal({ lang, onClose }: ConstructionModalPr
   const [email, setEmail] = useState('');
   const [dialCode, setDialCode] = useState('+961');
   const [phone, setPhone] = useState('');
+  const [message, setMessage] = useState('');
 
   const projects = [
     {
@@ -30,11 +31,11 @@ export default function ConstructionModal({ lang, onClose }: ConstructionModalPr
     },
     {
       title: copy.projectCampus,
-      image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/SCHOOl_Building_morning_view.jpg/1024px-SCHOOl_Building_morning_view.jpg',
-      alt: copy.projectCampus,
+      image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Building_of_school.jpg/960px-Building_of_school.jpg',
+      alt: 'A school campus building with a landscaped entrance courtyard',
       icon: HardHat,
-      credit: 'Photo: GHG ACADEMY JGR · CC BY-SA 4.0',
-      creditUrl: 'https://commons.wikimedia.org/wiki/File:SCHOOl_Building_morning_view.jpg',
+      credit: 'Photo: Sujeetindelhi · CC BY-SA 4.0',
+      creditUrl: 'https://commons.wikimedia.org/wiki/File:Building_of_school.jpg',
     },
     {
       title: copy.projectMall,
@@ -73,11 +74,17 @@ export default function ConstructionModal({ lang, onClose }: ConstructionModalPr
           _replyto: email,
           _subject: copy.emailSubject,
           _template: 'table',
-          message: 'New project inquiry submitted through the my platform Construction app.',
+          message: message.trim(),
         }),
       });
-      const result = await response.json() as { success?: string | boolean; message?: string };
-      if (!response.ok || String(result.success) !== 'true') {
+      const responseText = await response.text();
+      let result: { success?: string | boolean; message?: string };
+      try {
+        result = JSON.parse(responseText) as { success?: string | boolean; message?: string };
+      } catch {
+        throw new Error(copy.contactError);
+      }
+      if (!response.ok || ![true, 'true'].includes(result.success ?? false)) {
         throw new Error(result.message || copy.contactError);
       }
       setScreen('success');
@@ -152,6 +159,8 @@ export default function ConstructionModal({ lang, onClose }: ConstructionModalPr
                 <button type="submit" disabled={isSubmitting} className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-slate-950 px-5 py-3.5 text-sm font-bold text-white transition hover:bg-slate-800 disabled:cursor-wait disabled:opacity-60">
                   <Mail className="h-4 w-4" /> {isSubmitting ? copy.contactSending : copy.send}
                 </button>
+                <label className="block"><span className="mb-2 block text-sm font-semibold text-slate-700">{copy.messageLabel}</span><textarea required name="message" rows={5} maxLength={5000} value={message} onChange={(event) => setMessage(event.target.value)} placeholder={copy.messagePlaceholder} className="w-full resize-y rounded-xl border border-slate-300 px-4 py-3 text-sm outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-100" /></label>
+                {submitError && <div role="alert" className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"><p>{submitError}</p><a className="mt-2 inline-flex font-bold underline underline-offset-2" href={`mailto:malazjanbeih@gmail.com?subject=${encodeURIComponent(copy.emailSubject)}&body=${encodeURIComponent(`${copy.nameLabel}: ${name}\n${copy.emailLabel}: ${email}\n${copy.phoneLabel}: ${dialCode} ${phone}\n\n${copy.messageLabel}:\n${message}`)}`}>{copy.emailFallback}</a></div>}
               </form>
             </div>
           )}
