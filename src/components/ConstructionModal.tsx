@@ -120,7 +120,10 @@ export default function ConstructionModal({ lang, onClose }: ConstructionModalPr
                   <input required name="phone" type="tel" autoComplete="tel-national" dir="ltr" value={phone} onChange={(event) => setPhone(event.target.value)} placeholder={copy.phonePlaceholder} className="w-full min-w-0 rounded-xl border border-slate-300 px-4 py-3 text-sm outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-100" />
                 </div><p className="mt-1.5 text-xs text-slate-400">{copy.countryCodeLabel}: {dialCode}</p></div>
                 <label className="block"><span className="mb-2 block text-sm font-semibold text-slate-700">{copy.messageLabel}</span><textarea required name="message" rows={5} maxLength={5000} value={message} onChange={(event) => setMessage(event.target.value)} placeholder={copy.messagePlaceholder} className="w-full resize-y rounded-xl border border-slate-300 px-4 py-3 text-sm outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-100" /></label>
-
+                <button type="submit" className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-slate-950 px-5 py-3.5 text-sm font-bold text-white transition hover:bg-slate-800">
+                  <Mail className="h-4 w-4" /> {copy.send}
+                </button>
+              </form>
             </div>
           )}
 
