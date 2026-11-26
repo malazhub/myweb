@@ -29,7 +29,26 @@ try {
     throw new Error('Blank page: React did not render the homepage. heading="' + (heading || '') + '", rendered text length=' + text.length + '.');
   }
 
-  console.log('BROWSER SMOKE TEST PASSED: heading="' + heading + '", rendered text length=' + text.length + '.');
+  const anchorTags = [...html.matchAll(/<a\b[^>]*>/gi)].map(([tag]) => tag);
+  for (const destination of [
+    'https://riobase.github.io/sana/',
+    'https://riobase.github.io/agenda/',
+  ]) {
+    const anchor = anchorTags.find((tag) =>
+      tag.includes('href="' + destination + '"') &&
+      tag.includes('target="_blank"') &&
+      tag.includes('rel="noopener noreferrer"')
+    );
+    if (!anchor) {
+      throw new Error('Catalog destination is missing a safe external link: ' + destination);
+    }
+  }
+
+  if (html.includes('sanabase.github.io') || html.includes('malazhub.github.io')) {
+    throw new Error('Rendered catalog still contains a retired Sana Pages hostname.');
+  }
+
+  console.log('BROWSER SMOKE TEST PASSED: homepage rendered and Sana/Agenda links are safe canonical anchors.');
 } catch (error) {
   console.error('BROWSER SMOKE TEST FAILED:', error.message);
   process.exitCode = 1;

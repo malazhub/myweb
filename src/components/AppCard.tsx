@@ -20,21 +20,11 @@ export default function AppCard({ app, onTry, index, lang }: AppCardProps) {
   const cat = categories.find((c) => c.id === app.category);
   const isExternal = Boolean(app.externalUrl);
   const catLabel = cat ? (t[`cat${cat.id.charAt(0).toUpperCase()}${cat.id.slice(1)}`] ?? cat.label) : '';
+  const cardClassName = 'group flex cursor-pointer animate-slide-up flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white text-left shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl';
+  const cardStyle = { animationDelay: `${Math.min(index * 60, 400)}ms` };
 
-  const handleClick = () => {
-    if (app.externalUrl) {
-      window.open(app.externalUrl, '_blank', 'noopener,noreferrer');
-      return;
-    }
-    onTry(app);
-  };
-
-  return (
-    <button
-      onClick={handleClick}
-      style={{ animationDelay: `${Math.min(index * 60, 400)}ms` }}
-      className="group flex animate-slide-up flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white text-left shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl"
-    >
+  const cardContent = (
+    <>
       <div className={`relative ${app.id === 'agenda' ? 'aspect-[3/4]' : 'aspect-[9/16]'} w-full overflow-hidden ${app.image ? '' : `bg-gradient-to-br ${app.gradient}`}`}>
         {app.image && (
           <img
@@ -89,6 +79,28 @@ export default function AppCard({ app, onTry, index, lang }: AppCardProps) {
           </span>
         </div>
       </div>
+    </>
+  );
+
+  if (app.externalUrl) {
+    return (
+      <a
+        href={app.externalUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`${t.open} ${displayApp.name}`}
+        title={`${t.open} ${displayApp.name}`}
+        style={cardStyle}
+        className={`${cardClassName} no-underline`}
+      >
+        {cardContent}
+      </a>
+    );
+  }
+
+  return (
+    <button type="button" onClick={() => onTry(app)} style={cardStyle} className={cardClassName}>
+      {cardContent}
     </button>
   );
 }
