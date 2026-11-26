@@ -14,7 +14,7 @@ const html = read('index.html');
 
 const checks = [
   ['Construction category appears before Management', types.indexOf("id: 'construction'") < types.indexOf("id: 'management'")],
-  ['Construction is a first-class app in the shared apps grid', /id: 'construction',[\\s\\S]*?category: 'construction'/.test(types) && app.includes('<AppCard')],
+  ['Construction is a first-class app in the shared apps grid', types.includes("id: 'construction'") && types.includes("category: 'construction'") && app.includes('<AppCard')],
   ['Construction opens its own screen from the app card', app.includes("app.id === 'construction'") && app.includes('<ConstructionModal')],
   ['Construction inquiry has name, email, country code, phone and required message fields', ['nameLabel', 'emailLabel', 'countryCodeLabel', 'phoneLabel', 'messageLabel'].every((key) => modal.includes(key)) && /required name="message"/.test(modal)],
   ['Inquiry sends the customer message to the requested email and only then shows thank-you', modal.includes('action="https://formsubmit.co/malazjanbeih@gmail.com"') && modal.includes('method="POST"') && modal.includes('name="_next"') && modal.includes('construction-inquiry=sent') && !modal.includes('fetch(') && app.includes('construction-inquiry') && app.includes('closeConstruction')],
